@@ -17,8 +17,7 @@ require('./routers/index')(app);
 const port = process.env.PORT || localConfig.port;
 app.listen(port, function(){
   logger.info(`maketjdance listening on http://localhost:${port}/appmetrics-dash`);
-  
   logger.info(`maketjdance listening on http://localhost:${port}`);
-  
-  
 });
+
+

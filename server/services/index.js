@@ -6,6 +6,9 @@ var serviceManager = require('./service-manager');
 IBMCloudEnv.init();
 
 module.exports = function(app){
-	require('./service-watson-conversation')(app, serviceManager);
-
+	require('./service-watson-assistant')(app, serviceManager);	
+	// require('./service-watson-speech-to-text')(app, serviceManager);	
+	// require('./service-watson-text-to-speech')(app, serviceManager);
 };
+
+

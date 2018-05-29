@@ -6,7 +6,8 @@ describe('Testing Server', function() {
 
   before(function(done){
     require(process.cwd() + '/server/server');
-    setTimeout(done, 5000); // Waiting 5 seconds for server to start
+    console.log("BEFORE ALL")
+    setTimeout(()=>done(), 5000); // Waiting 5 seconds for server to start
     this.timeout(10000);
   });
 
