@@ -73,6 +73,13 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
                 {time: 999, servo: 10, led: "#180000"}
             ],
 
+        sulk: [
+                {time:   0, servo: 30, led: "#000020"},
+                {time: 250, servo: 25                },
+                {time: 500, servo: 15, led: "#200010"},
+                {time: 999, servo: 10, led: "#180000"}
+            ],
+
         upbeat: [
                 {time:   0, servo: 70, led: "#000020"},
                 {time: 250, servo: 60                },
@@ -97,13 +104,9 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
                 {repeat:  4800},
                 {repeat:  5600},
                 {repeat:  6400},
-                {time:  7200, servo:  40, led: "#000040"},
+                {time:  7200, servo:  100, led: "#000040"}
             ]
     };
-
-moves.sulk = moves.sigh
-
-console.log(credentials)
 
 // instantiate our TJBot!
 var tj = new TJBot(hardware, tjConfig, credentials);
@@ -138,26 +141,24 @@ tj.listen(function(rawMsg) {
         // send to the conversation service
         assistant.assist(turn, (err, response) => {
             if (!err) {
+
                 console.log("ASSISTANT RESPONSE: ", JSON.stringify(response)); 
+
                 // speak the result
                 if (_.has(response, "speak")) {
 
-                    console.log()
+                    console.log();
+                    console.log();
                     console.log( response.speak );
-                    console.log()
+                    console.log();
+                    console.log();
 
                     tj.speak(response.speak);
                 }
 
                 if (_.has(response, "movement")) {
 
-                    console.log("movement: ", response.movement);
-                    console.log("moves: ", moves);
-
                     if (_.has(moves, response.movement)) {
-
-                        console.log("executing");
-
                         moves[response.movement].forEach((move) => {
 
                             if (_.has(move, "repeat")) {
@@ -181,24 +182,13 @@ tj.listen(function(rawMsg) {
 });
 
 function makeMove(move) {
-    console.log("move", move);
-
     var servo;
     if(_.has(move, "servo")) {
-
-        console.log("servo", move.servo);
-
         servo = (tj._SERVO_ARM_DOWN - tj._SERVO_ARM_BACK)*(100-move.servo)/100 + 
                 tj._SERVO_ARM_BACK;
-        console.log('('+tj._SERVO_ARM_DOWN+' - '+tj._SERVO_ARM_BACK+')*'+(100-move.servo)+'/'+100+' + '+
-                tj._SERVO_ARM_BACK);
-        console.log("servo: ", servo);
         tj._motor.servoWrite(servo);
     }
     if(_.has(move, "led")) {
-
-        console.log("led", move.led);
-
         tj.shine(move.led);
     }
 
