@@ -68,7 +68,7 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
                 {time:   0, servo: 20, led: "#000020"},
                 {time: 250, servo: 15               },
                 {time: 500, servo: 5, led: "#200010"},
-                {time: 999, servo: 0, led: "#180000"}}
+                {time: 999, servo: 0, led: "#180000"}
             ]
     }
 
