@@ -97,6 +97,7 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
                 {repeat:  4800},
                 {repeat:  5600},
                 {repeat:  6400},
+                {time:  7200, servo:  40, led: "#000040"},
             ]
     };
 
@@ -162,7 +163,9 @@ tj.listen(function(rawMsg) {
                             if (_.has(move, "repeat")) {
 
                                 moves[response.movement].forEach((repeatMove) => {
-                                    setTimeout(() => {makeMove(repeatMove)}, move.repeat + repeatMove.time)
+                                    if (move.repeat > repeatMove.time) {
+                                        setTimeout(() => {makeMove(repeatMove)}, move.repeat + repeatMove.time)
+                                    }
                                 });
 
                             }
