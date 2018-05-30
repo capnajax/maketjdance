@@ -125,8 +125,8 @@ tj.listen(function(rawMsg) {
                             if(_.has(move.led)) {
                                 tj.shine(move.led)
                             }
-                        }, move.time 
-                    })
+                        }, move.time);
+                    });
 
                 }
 
