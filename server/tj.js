@@ -15,8 +15,8 @@
  */
 
 const 
-    assistant = require('./assistant')
-    IBMCloudEnv = require('ibm-cloud-env');
+    assistant = require('./assistant'),
+    IBMCloudEnv = require('ibm-cloud-env'),
     serviceManager = require('services/service-manager'),
     TJBot = require('tjbot');
 
