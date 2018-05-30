@@ -20,9 +20,7 @@ const
     serviceManager = require('./services/service-manager'),
     TJBot = require('tjbot');
 
-var t2s = serviceManager.get("watson_text_to_speech"),
-    s2t = serviceManager.get("watson_speech_to_text"),
-    assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
+var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
 
     // these are the hardware capabilities that TJ needs for this recipe
     hardware = ['microphone', 'speaker', 'servo', 'led'],
@@ -61,11 +59,10 @@ var t2s = serviceManager.get("watson_text_to_speech"),
             "Ms"
         ],
 
-    // instantiate our TJBot!
-    tj = new TJBot(hardware, tjConfig, credentials);
-
-
 console.log(credentials)
+
+// instantiate our TJBot!
+tj = new TJBot(hardware, tjConfig, credentials);
 
 // listen for utterances with our attentionWord and send the result to
 // the Conversation service
