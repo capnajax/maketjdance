@@ -62,7 +62,7 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
 console.log(credentials)
 
 // instantiate our TJBot!
-ver tj = new TJBot(hardware, tjConfig, credentials);
+var tj = new TJBot(hardware, tjConfig, credentials);
 
 // listen for utterances with our attentionWord and send the result to
 // the Conversation service
