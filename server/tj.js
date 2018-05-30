@@ -129,6 +129,9 @@ tj.listen(function(rawMsg) {
                         console.log("executing");
 
                         moves[response.movement].forEach((move) => {
+
+                            console.log("move", move);
+
                             setTimeout(() => {
                                 var servo;
                                 if(_.has(move.servo)) {
