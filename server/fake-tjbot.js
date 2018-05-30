@@ -10,7 +10,11 @@ class FakeTJBot
 		console.log(text)
 	}
 
-	listen(cb)
+	listen(cb) {
+
+
+
+	}
 
 }
 

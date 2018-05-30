@@ -41,12 +41,12 @@ var t2s = serviceManager.get("watson_text_to_speech"),
 
     credentials = {
             speech_to_text: {
-                username: IBMCloudEnv.get("02b3fde9-7635-48f4-99cb-152405904dd3"),
-                password: IBMCloudEnv.get("XfkakfcjEosZ")
+                username: IBMCloudEnv.get(watson_speech_to_text_username),
+                password: IBMCloudEnv.get(watson_speech_to_text_password)
             },
             text_to_speech: {
-                username: IBMCloudEnv.get("a3d2ebe7-9a01-4483-8228-fa123e1ac744"),
-                password: IBMCloudEnv.get("LJGecNxe6MQB")
+                username: IBMCloudEnv.get(watson_text_to_speech_username),
+                password: IBMCloudEnv.get(watson_text_to_speech_password)
             }
         },
 
@@ -61,19 +61,6 @@ var t2s = serviceManager.get("watson_text_to_speech"),
             "Okay",
             "Ms"
         ],
-
-    // why does TJ feel that way
-    reasonsFor = {
-            sad: [
-                "I feel lonely",
-                "I have no energy",
-                "I feel I can't do anything right"
-            ],
-            happy: [
-                "I feel I can take on the world!",
-                "All I want to do is dance!"
-            ]
-        },
 
     // instantiate our TJBot!
     tj = new TJBot(hardware, tjConfig, credentials);

@@ -8,5 +8,28 @@
 </head>
 <body>
 <h1>Hello world! This is a StarterKit!</h1>
+Hey Watson, <input type="text" id="tjquestion"/>
+<p id="output"></p>
+<button id="tjbutton">Message TJ</button>
+<script>
+	function formatParams( params ) {
+			return "?" + Object.keys(params).map(
+				function(key){
+        	  		return key+"="+encodeURIComponent(params[key])}
+        	  	).join("&")
+		};
+	document.getElementById("tjbutton").addEventListener('click', () => {
+			var question = "Hey Watson, " + document.getElementById("tjquestion").value,
+				xhttp = new XMLHttpRequest();
+			console.log("asking tj", question);
+		    xhttp.onreadystatechange = function() {
+		        if (this.readyState == 4 && this.status == 200) {
+		            document.getElementById('output').innerHTML = this.responseText;
+		       }
+		    };
+			xhttp.open("GET", "/asktj"+formatParams({q:question}), true);
+			xhttp.send();
+		});
+</script>
 </body>
 </html>

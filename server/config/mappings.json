@@ -1,23 +1,30 @@
 {
-  "watson_conversation_url": {
+  "watson_assistant_url": {
     "searchPatterns": [
-      "cloudfoundry:$.conversation[0].credentials.url",
-      "env:service_watson_conversation:$.url",
-      "file:/server/localdev-config.json:$.watson_conversation_url"
+      "cloudfoundry:$.assistant[0].credentials.url",
+      "env:service_watson_assistant:$.url",
+      "file:/server/localdev-config.json:$.watson_assistant_url"
     ]
   },
-  "watson_conversation_username": {
+  "watson_assistant_username": {
     "searchPatterns": [
-      "cloudfoundry:$.conversation[0].credentials.username",
-      "env:service_watson_conversation:$.username",
-      "file:/server/localdev-config.json:$.watson_conversation_username"
+      "cloudfoundry:$.assistant[0].credentials.username",
+      "env:service_watson_assistant:$.username",
+      "file:/server/localdev-config.json:$.watson_assistant_username"
     ]
   },
-  "watson_conversation_password": {
+  "watson_assistant_password": {
     "searchPatterns": [
-      "cloudfoundry:$.conversation[0].credentials.password",
-      "env:service_watson_conversation:$.password",
-      "file:/server/localdev-config.json:$.watson_conversation_password"
+      "cloudfoundry:$.assistant[0].credentials.password",
+      "env:service_watson_assistant:$.password",
+      "file:/server/localdev-config.json:$.watson_assistant_password"
+    ]
+  },
+  "watson_assistant_workspace": {
+    "searchPatterns": [
+      "cloudfoundry:$.assistant[0].credentials.workspace",
+      "env:service_watson_assistant:$.workspace",
+      "file:/server/localdev-config.json:$.watson_assistant_workspace"
     ]
   }
 }
