@@ -134,7 +134,10 @@ tj.listen(function(rawMsg) {
 
                             setTimeout(() => {
                                 var servo;
-                                if(_.has(move.servo)) {
+                                if(_.has(move, "servo")) {
+
+                                    console.log("servo", move.servo);
+
                                     servo = (tj._SERVO_ARM_DOWN - tj._SERVO_ARM_BACK)*move.servo/100 + 
                                             tj._SERVO_ARM_BACK;
                                     console.log('('+tj._SERVO_ARM_DOWN+' - '+tj._SERVO_ARM_BACK+')*'+move.servo+'/'+100+' + '+
@@ -142,7 +145,7 @@ tj.listen(function(rawMsg) {
                                     console.log("servo: ", servo);
                                     tj._motor.servoWrite(servo);
                                 }
-                                if(_.has(move.led)) {
+                                if(_.has(move, "led")) {
                                     tj.shine(move.led);
                                 }
                             }, move.time);
