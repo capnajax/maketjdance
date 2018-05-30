@@ -15,10 +15,10 @@
  */
 
 const 
+    assistant = require('./assistant')
     IBMCloudEnv = require('ibm-cloud-env');
-    isPi = require('detect-rpi'),
     serviceManager = require('services/service-manager'),
-    TJBot = isPi() ? require('tjbot') : require('./fake-tjbot');
+    TJBot = require('tjbot');
 
 var t2s = serviceManager.get("watson_text_to_speech"),
     s2t = serviceManager.get("watson_speech_to_text"),
@@ -93,15 +93,14 @@ tj.listen(function(rawMsg) {
         // remove our name from the message
         var turn = msg.replace((startsWithVariance+startsWithCall).toLowerCase(), "");
 
-        console.log("Turn =" + turn);
 
         // send to the conversation service
-        tj.converse(WORKSPACEID, turn, function(response) {
+        assistant.assist(turn);
+
 
 	    console.log(JSON.stringify(response)); 
 	    // speak the result
-            tj.speak(response.description);
-        });
+        tj.speak(response.speak);
     }
 
 });

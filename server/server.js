@@ -13,6 +13,11 @@ require('./services/index')(app);
 require('./routers/index')(app);
 
 // Add your code here
+const isPi = require('detect-rpi');
+
+if (isPi()) {
+	require('./tj');
+}
 
 const port = process.env.PORT || localConfig.port;
 app.listen(port, function(){
