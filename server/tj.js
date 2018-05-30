@@ -22,7 +22,6 @@ const
 
 var t2s = serviceManager.get("watson_text_to_speech"),
     s2t = serviceManager.get("watson_speech_to_text"),
-    assistant = serviceManager.get("watson_assistant"),
     assistantWorkspace = IBMCloudEnv.get("watson_assistant_workspace"),
 
     // these are the hardware capabilities that TJ needs for this recipe
