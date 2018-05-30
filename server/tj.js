@@ -111,27 +111,40 @@ tj.listen(function(rawMsg) {
                 console.log(JSON.stringify(response)); 
                 // speak the result
                 if (_.has(response, "speak")) {
+
+                    console.log()
+                    console.log( response.speak );
+                    console.log()
+
                     tj.speak(response.speak);
                 }
 
-                if (_.has(response, "movement") && _.has(moves, response.movement)) {
+                if (_.has(response, "movement")) {
 
-                    moves[response.movement].forEach((move) => {
-                        setTimeout(() => {
-                            if(_.has(move.servo)) {
-                                tj._motor.servoWrite(
-                                        (tj._SERVO_ARM_DOWN - tj._SERVO_ARM_BACK)*move.servo/100 + 
-                                        tj._SERVO_ARM_BACK);
-                            }
-                            if(_.has(move.led)) {
-                                tj.shine(move.led)
-                            }
-                        }, move.time);
-                    });
+                    console.log("movement: ", response.movement);
 
+                    if (_.has(moves, response.movement)) {
+
+                        moves[response.movement].forEach((move) => {
+                            setTimeout(() => {
+                                var servo;
+                                if(_.has(move.servo)) {
+                                    servo = (tj._SERVO_ARM_DOWN - tj._SERVO_ARM_BACK)*move.servo/100 + 
+                                            tj._SERVO_ARM_BACK;
+                                    console.log('('+tj._SERVO_ARM_DOWN+' - '+tj._SERVO_ARM_BACK+')*'+move.servo+'/'+100+' + '+
+                                            tj._SERVO_ARM_BACK);
+                                    console.log("servo: ", servo);
+                                    tj._motor.servoWrite(
+                                            ;
+                                }
+                                if(_.has(move.led)) {
+                                    tj.shine(move.led);
+                                }
+                            }, move.time);
+                        });
+
+                    }
                 }
-
-
             }
         });
     }
