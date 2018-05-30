@@ -40,12 +40,12 @@ var t2s = serviceManager.get("watson_text_to_speech"),
 
     credentials = {
             speech_to_text: {
-                username: IBMCloudEnv.getString(watson_speech_to_text_username),
-                password: IBMCloudEnv.getString(watson_speech_to_text_password)
+                username: IBMCloudEnv.getString("watson_speech_to_text_username"),
+                password: IBMCloudEnv.getString("watson_speech_to_text_password")
             },
             text_to_speech: {
-                username: IBMCloudEnv.getString(watson_text_to_speech_username),
-                password: IBMCloudEnv.getString(watson_text_to_speech_password)
+                username: IBMCloudEnv.getString("watson_text_to_speech_username"),
+                password: IBMCloudEnv.getString("watson_text_to_speech_password")
             }
         },
 
