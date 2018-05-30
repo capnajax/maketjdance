@@ -36,7 +36,12 @@ var assistant = serviceManager.get("watson_assistant"),
     			"Yay!",
     			"Let's party!"
     		]
-    }
+    },
+
+    movement = {
+    	"express_emotion" : { sad: "sigh", happy: "upbeat" },
+    	"dance" : { sad: "sulk", happy: "dance" },
+    },
 
     feeling = "happy";
 
@@ -63,13 +68,13 @@ module.exports = {
 
 				switch(intent) {
 				case 'express_emotion':
-					cb && cb(null, {speak: _.sample(express[feeling]), movement: feeling = "sad" ? "sigh" : "upbeat"});
+					cb && cb(null, {speak: _.sample(express[feeling]), movement: movement[intent][feeling]});
 					break;
 				case 'explain_emotion':
 					cb && cb(null, {speak: _.sample(reasonsFor[feeling])});
 					break;
 				case 'dance':
-					cb && cb(null, {speak: _.sample(dance[feeling]), movement: feeling == "sad" ? "sulk" : "dance"});
+					cb && cb(null, {speak: _.sample(dance[feeling]), movement: movement[intent][feeling]});
 					break;
 				default:
 					cb && cb(null, response);
