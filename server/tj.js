@@ -60,7 +60,17 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
             "Hey",
             "Okay",
             "Ms"
-        ];
+        ],
+
+    moves = {
+
+        sigh: [
+                {time:   0, servo: 20, led: "#000020"},
+                {time: 250, servo: 15               },
+                {time: 500, servo: 5, led: "#200010"},
+                {time: 999, servo: 0, led: "#180000"}}
+            ]
+    }
 
 console.log(credentials)
 
@@ -99,11 +109,33 @@ tj.listen(function(rawMsg) {
             if (!err) {
                 console.log(JSON.stringify(response)); 
                 // speak the result
-                tj.speak(response.speak);
+                if (_.has(response, "speak")) {
+                    tj.speak(response.speak);
+                }
+
+                if (_.has(response, "movement") && _.has(moves, response.movement)) {
+
+                    moves[response.movement].forEach((move) => {
+                        setTimeout(() => {
+                            if(_.has(move.servo)) {
+                                tj._motor.servoWrite(
+                                        (tj._SERVO_ARM_DOWN - tj._SERVO_ARM_BACK)*move.servo/100 + 
+                                        tj._SERVO_ARM_BACK);
+                            }
+                            if(_.has(move.led)) {
+                                tj.shine(move.led)
+                            }
+                        }, move.time 
+                    })
+
+                }
+
+
             }
         });
     }
 });
+
 
 
 
