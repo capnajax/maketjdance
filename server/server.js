@@ -1,5 +1,8 @@
-require('appmetrics-dash').attach();
-require('appmetrics-prometheus').attach();
+const isPi = require('detect-rpi');
+if (!isPi()) {
+	require('appmetrics-dash').attach();
+	require('appmetrics-prometheus').attach();
+}
 
 const appName = require('./../package').name;
 const express = require('express');
@@ -13,7 +16,6 @@ require('./services/index')(app);
 require('./routers/index')(app);
 
 // Add your code here
-const isPi = require('detect-rpi');
 
 if (isPi()) {
 	require('./tj');
