@@ -60,7 +60,8 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
     tjVariances = [
             "Hey",
             "Okay",
-            "Ms"
+            "Ms",
+            "The"
         ],
 
     moves = {
