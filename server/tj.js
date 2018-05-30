@@ -122,8 +122,11 @@ tj.listen(function(rawMsg) {
                 if (_.has(response, "movement")) {
 
                     console.log("movement: ", response.movement);
+                    console.log("moves: ", moves);
 
                     if (_.has(moves, response.movement)) {
+
+                        console.log("executing");
 
                         moves[response.movement].forEach((move) => {
                             setTimeout(() => {
