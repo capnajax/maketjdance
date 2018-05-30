@@ -134,8 +134,7 @@ tj.listen(function(rawMsg) {
                                     console.log('('+tj._SERVO_ARM_DOWN+' - '+tj._SERVO_ARM_BACK+')*'+move.servo+'/'+100+' + '+
                                             tj._SERVO_ARM_BACK);
                                     console.log("servo: ", servo);
-                                    tj._motor.servoWrite(
-                                            ;
+                                    tj._motor.servoWrite(servo);
                                 }
                                 if(_.has(move.led)) {
                                     tj.shine(move.led);
