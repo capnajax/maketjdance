@@ -108,7 +108,7 @@ tj.listen(function(rawMsg) {
         // send to the conversation service
         assistant.assist(turn, (err, response) => {
             if (!err) {
-                console.log(JSON.stringify(response)); 
+                console.log("ASSISTANT RESPONSE: ", JSON.stringify(response)); 
                 // speak the result
                 if (_.has(response, "speak")) {
 
