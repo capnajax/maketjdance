@@ -18,7 +18,8 @@ const
     assistant = require('./assistant'),
     IBMCloudEnv = require('ibm-cloud-env'),
     serviceManager = require('./services/service-manager'),
-    TJBot = require('tjbot');
+    TJBot = require('tjbot'),
+    _ = require('lodash');
 
 var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
 
