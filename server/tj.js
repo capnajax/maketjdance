@@ -138,14 +138,17 @@ tj.listen(function(rawMsg) {
 
                                     console.log("servo", move.servo);
 
-                                    servo = (tj._SERVO_ARM_DOWN - tj._SERVO_ARM_BACK)*move.servo/100 + 
+                                    servo = (tj._SERVO_ARM_DOWN - tj._SERVO_ARM_BACK)*(100-move.servo)/100 + 
                                             tj._SERVO_ARM_BACK;
-                                    console.log('('+tj._SERVO_ARM_DOWN+' - '+tj._SERVO_ARM_BACK+')*'+move.servo+'/'+100+' + '+
+                                    console.log('('+tj._SERVO_ARM_DOWN+' - '+tj._SERVO_ARM_BACK+')*'+(100-move.servo)+'/'+100+' + '+
                                             tj._SERVO_ARM_BACK);
                                     console.log("servo: ", servo);
                                     tj._motor.servoWrite(servo);
                                 }
                                 if(_.has(move, "led")) {
+
+                                    console.log("led", move.led);
+
                                     tj.shine(move.led);
                                 }
                             }, move.time);
