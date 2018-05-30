@@ -73,6 +73,13 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
                 {time: 999, servo: 10, led: "#180000"}
             ],
 
+        upbeat: [
+                {time:   0, servo: 70, led: "#000020"},
+                {time: 250, servo: 60                },
+                {time: 500, servo: 55, led: "#006010"},
+                {time: 999, servo: 90, led: "#486020"}
+            ],
+
         dance: [
                 {time:    0, servo: 100, led: "#FF0000"},
                 {time:  100, servo: 100, led: "#4F0000"},
@@ -82,14 +89,14 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
                 {time:  500, servo: 100, led: "#004000"},
                 {time:  600, servo:  40, led: "#0000FF"},
                 {time:  700, servo:  40, led: "#000040"},
-                {time:  800, servo: 100, led: "#FF0000"},
-                {time:  900, servo: 100, led: "#4F0000"},
-                {time: 1000, servo:  70, led: "#0000FF"},
-                {time: 1200, servo:  70, led: "#000040"},
-                {time: 1300, servo: 100, led: "#00FF00"},
-                {time: 1400, servo: 100, led: "#004000"},
-                {time: 1500, servo:  40, led: "#0000FF"},
-                {time: 1600, servo:  40, led: "#000040"},
+                {repeat:  800},
+                {repeat:  1600},
+                {repeat:  2400},
+                {repeat:  3200},
+                {repeat:  4000},
+                {repeat:  4800},
+                {repeat:  5600},
+                {repeat:  6400},
             ]
     };
 
@@ -152,28 +159,15 @@ tj.listen(function(rawMsg) {
 
                         moves[response.movement].forEach((move) => {
 
-                            console.log("move", move);
+                            if (_.has(move, "repeat")) {
 
-                            setTimeout(() => {
-                                var servo;
-                                if(_.has(move, "servo")) {
+                                moves[response.movement].forEach((repeatMove) => {
+                                    setTimeout(() => {makeMove(repeatMove)}, move.repeat + repeatMove.time)
+                                });
 
-                                    console.log("servo", move.servo);
+                            }
+                            setTimeout(() => {makeMove(move)}, move.time);
 
-                                    servo = (tj._SERVO_ARM_DOWN - tj._SERVO_ARM_BACK)*(100-move.servo)/100 + 
-                                            tj._SERVO_ARM_BACK;
-                                    console.log('('+tj._SERVO_ARM_DOWN+' - '+tj._SERVO_ARM_BACK+')*'+(100-move.servo)+'/'+100+' + '+
-                                            tj._SERVO_ARM_BACK);
-                                    console.log("servo: ", servo);
-                                    tj._motor.servoWrite(servo);
-                                }
-                                if(_.has(move, "led")) {
-
-                                    console.log("led", move.led);
-
-                                    tj.shine(move.led);
-                                }
-                            }, move.time);
                         });
 
                     }
@@ -182,6 +176,30 @@ tj.listen(function(rawMsg) {
         });
     }
 });
+
+function makeMove(move) {
+    console.log("move", move);
+
+    var servo;
+    if(_.has(move, "servo")) {
+
+        console.log("servo", move.servo);
+
+        servo = (tj._SERVO_ARM_DOWN - tj._SERVO_ARM_BACK)*(100-move.servo)/100 + 
+                tj._SERVO_ARM_BACK;
+        console.log('('+tj._SERVO_ARM_DOWN+' - '+tj._SERVO_ARM_BACK+')*'+(100-move.servo)+'/'+100+' + '+
+                tj._SERVO_ARM_BACK);
+        console.log("servo: ", servo);
+        tj._motor.servoWrite(servo);
+    }
+    if(_.has(move, "led")) {
+
+        console.log("led", move.led);
+
+        tj.shine(move.led);
+    }
+
+}
 
 
 

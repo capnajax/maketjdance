@@ -63,7 +63,7 @@ module.exports = {
 
 				switch(intent) {
 				case 'express_emotion':
-					cb && cb(null, {speak: _.sample(express[feeling]), movement: "sigh"});
+					cb && cb(null, {speak: _.sample(express[feeling]), movement: feeling = "sad" ? "sigh" : "upbeat"});
 					break;
 				case 'explain_emotion':
 					cb && cb(null, {speak: _.sample(reasonsFor[feeling])});
