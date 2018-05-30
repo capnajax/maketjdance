@@ -17,7 +17,7 @@
 const 
     assistant = require('./assistant'),
     IBMCloudEnv = require('ibm-cloud-env'),
-    serviceManager = require('services/service-manager'),
+    serviceManager = require('./services/service-manager'),
     TJBot = require('tjbot');
 
 var t2s = serviceManager.get("watson_text_to_speech"),
