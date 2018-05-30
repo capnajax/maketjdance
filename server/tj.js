@@ -66,12 +66,33 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
     moves = {
 
         sigh: [
-                {time:   0, servo: 20, led: "#000020"},
-                {time: 250, servo: 15               },
-                {time: 500, servo: 5, led: "#200010"},
-                {time: 999, servo: 0, led: "#180000"}
+                {time:   0, servo: 30, led: "#000020"},
+                {time: 250, servo: 25                },
+                {time: 500, servo: 15, led: "#200010"},
+                {time: 999, servo: 10, led: "#180000"}
+            ],
+
+        dance: [
+                {time:    0, servo: 100, led: "#FF0000"},
+                {time:  100, servo: 100, led: "#4F0000"},
+                {time:  200, servo:  70, led: "#0000FF"},
+                {time:  300, servo:  70, led: "#000040"},
+                {time:  400, servo: 100, led: "#00FF00"},
+                {time:  500, servo: 100, led: "#004000"},
+                {time:  600, servo:  40, led: "#0000FF"},
+                {time:  700, servo:  40, led: "#000040"},
+                {time:  800, servo: 100, led: "#FF0000"},
+                {time:  900, servo: 100, led: "#4F0000"},
+                {time: 1000, servo:  70, led: "#0000FF"},
+                {time: 1200, servo:  70, led: "#000040"},
+                {time: 1300, servo: 100, led: "#00FF00"},
+                {time: 1400, servo: 100, led: "#004000"},
+                {time: 1500, servo:  40, led: "#0000FF"},
+                {time: 1600, servo:  40, led: "#000040"},
             ]
-    }
+    };
+
+moves.sulk = moves.sigh
 
 console.log(credentials)
 
