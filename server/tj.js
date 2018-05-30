@@ -22,7 +22,7 @@ const
 
 var t2s = serviceManager.get("watson_text_to_speech"),
     s2t = serviceManager.get("watson_speech_to_text"),
-    assistantWorkspace = IBMCloudEnv.get("watson_assistant_workspace"),
+    assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
 
     // these are the hardware capabilities that TJ needs for this recipe
     hardware = ['microphone', 'speaker', 'servo', 'led'],
