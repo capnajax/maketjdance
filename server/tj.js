@@ -91,16 +91,15 @@ tj.listen(function(rawMsg) {
         // remove our name from the message
         var turn = msg.replace((startsWithVariance+startsWithCall).toLowerCase(), "");
 
-
         // send to the conversation service
-        assistant.assist(turn);
-
-
-	    console.log(JSON.stringify(response)); 
-	    // speak the result
-        tj.speak(response.speak);
+        assistant.assist(turn, (err, response) => {
+            if (!err) {
+                console.log(JSON.stringify(response)); 
+                // speak the result
+                tj.speak(response.speak);
+            }
+        });
     }
-
 });
 
 
