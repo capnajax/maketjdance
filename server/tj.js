@@ -33,6 +33,9 @@ var assistantWorkspace = IBMCloudEnv.getString("watson_assistant_workspace"),
             },
             log: {
                 level: 'verbose'
+            },
+            speak: {
+                speakerDeviceId: "bluealsa:HCI=hci0,DEV=8C:85:80:00:4D:E1,PROFILE=a2dp"
             }
         },
 
