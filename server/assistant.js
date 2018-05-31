@@ -43,7 +43,7 @@ var assistant = serviceManager.get("watson_assistant"),
     	"dance" : { sad: "sulk", happy: "dance" },
     },
 
-    feeling = "sad";
+    feeling = "happy";
 
 module.exports = {
 	assist: (text, cb) => {
