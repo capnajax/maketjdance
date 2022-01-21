@@ -28,7 +28,7 @@
     "express": "^4.15.3",
     "ibm-cloud-env": "^0",
     "lodash": "^4.17.10",
-    "log4js": "^1.1.1",
+    "log4js": "^6.4.0",
     "watson-developer-cloud": "^3.4.2"
   },
   "optionalDependencies": {
